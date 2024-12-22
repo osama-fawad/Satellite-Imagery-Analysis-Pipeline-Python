@@ -22,8 +22,8 @@ This project demonstrates:
 
 3. **APIs**:
    - **Historical Spread Data**: Fetch stored spread data from PostgreSQL.
-   - **Backtesting Simulation**: Evaluate the performance of the mean-reversion strategy.
    - **Black-Scholes Pricing**: API to calculate the price of options.
+   - **Mean Reversion**: API to use the mean reversion strategy.
 
 4. **Data Storage**:
    - Stores real-time price and spread data in a PostgreSQL database for historical analysis.
@@ -53,27 +53,7 @@ This project demonstrates:
      ]
      ```
 
-### 2. **Backtesting Simulation**
-   - **Endpoint**: `POST /api/backtest`
-   - **Description**: Simulate the performance of the mean-reversion strategy.
-   - **Request**:
-     ```json
-     {
-       "initial_capital": 10000,
-       "upper_threshold": 2,
-       "lower_threshold": -2
-     }
-     ```
-   - **Response**:
-     ```json
-     {
-       "pnl": 1200.50,
-       "sharpe_ratio": 1.25,
-       "trades_executed": 35
-     }
-     ```
-
-### 3. **Black-Scholes Pricing**
+### 2. **Black-Scholes Pricing**
    - **Endpoint**: `POST /api/option-pricing`
    - **Description**: Calculate the fair value of an option using Black-Scholes.
    - **Request**:
@@ -102,7 +82,7 @@ This project demonstrates:
 2. **Kafka Consumer**:
    - Consumes prices, calculates spreads, stores data in PostgreSQL, and generates trading signals.
 3. **API Layer**:
-   - Exposes historical data, backtesting, and Black-Scholes calculations via Flask endpoints.
+   - Exposes historical data, Mean Reversion and  Black-Scholes calculations via Flask endpoints.
 
 ---
 
