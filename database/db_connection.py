@@ -5,7 +5,7 @@ def get_db_connection():
 
     return psycopg2.connect(
         host="localhost",
-        port=5432,
+        port=5433,
         database="cqre",
         user="cqre",
         password="cqre"

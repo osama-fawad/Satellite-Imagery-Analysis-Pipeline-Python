@@ -29,7 +29,7 @@ services:
     image: postgres:latest
     container_name: cqre_postgres
     ports:
-      - "5432:5432"
+      - "5433:5432"
     environment:
       POSTGRES_USER: cqre
       POSTGRES_PASSWORD: cqre

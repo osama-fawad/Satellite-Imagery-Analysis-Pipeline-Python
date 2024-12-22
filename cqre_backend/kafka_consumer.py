@@ -6,15 +6,20 @@ import time
 import logging
 
 
-
+# Configure logging
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+)
 logger = logging.getLogger(__name__)
 
 class SpreadConsumer:
     def __init__(self):
         self.consumer = KafkaConsumer(
             "commodity-prices",
-            bootstrap_servers = "localhost:9092",
-            value_deserializer= lambda v: json.loads(v.decode("utf-8"))
+            bootstrap_servers="localhost:9092",
+            group_id="trade-group",
+            value_deserializer=lambda v: json.loads(v.decode("utf-8"))
         )
         self.spread_service = SpreadService()
 
@@ -31,7 +36,7 @@ class SpreadConsumer:
 
                 self.spread_service.save_spread_to_db(wti_price,brent_price,spread)
                 spread_history = self.spread_service.fetch_spread_history()
-                spreads = [row[2] for row in spread_history]
+                spreads = [rows[2] for rows in spread_history]
 
                 mean, standard_deviation = calculate_statistics(spreads)
                 signal = generate_signal(spread, mean, standard_deviation)
@@ -43,8 +48,10 @@ class SpreadConsumer:
                 logger.warning("Invalid price data.")
 
 if __name__ == "__main__":
+    logger.info("Starting consumer...")
     consumer = SpreadConsumer()
     consumer.consume_prices()
+
 
 
 

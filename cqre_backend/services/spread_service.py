@@ -11,8 +11,8 @@ class SpreadService:
             conn = get_db_connection()
             cursor =conn.cursor()
             cursor.execute(
-                "INSERT INTO spread_history(wti_price, brent_price, spread) "
-                "VALUES (%s, %s, %s)", wti_price, brent_price, spread
+                "INSERT INTO spread_history(wti_price, brent_price, spread) VALUES (%s, %s, %s)",
+                (wti_price, brent_price, spread)
             )
             conn.commit()
             cursor.close()
@@ -32,7 +32,7 @@ class SpreadService:
                 "SELECT wti_price, brent_price, spread FROM spread_history ORDER BY timestamp DESC LIMIT %s",
                 (limit,)
             )
-            row = cursor.fetchall()
+            rows = cursor.fetchall()
             cursor.close()
             conn.close()
             logger.info("Fetched spread history from database")

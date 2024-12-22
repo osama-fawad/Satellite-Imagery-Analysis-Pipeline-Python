@@ -24,21 +24,24 @@ def calculate_statistics(spread_history):
         mean = np.mean(spread_history)
         standard_deviation = np.std(spread_history)
         logger.info(f"Calculated mean: {mean:.4f}, standard deviation: {standard_deviation:4f}")
-        return mean,standard_deviation
+        return float(mean),float(standard_deviation)
 
     except Exception as e:
         logger.error(f"Error calculating statistics: {e}")
         raise
 
-def generate_signal(spread,
-                    mean,
-                    standard_deviation,
+def generate_signal(spread:float,
+                    mean:float,
+                    standard_deviation:float,
                     upper_threshold=2,
                     lower_threshold=-2):
     """Generate trading signal based on Z-score of the spread"""
 
     try:
-        z_score = (spread-mean)/standard_deviation
+        if standard_deviation == 0:
+            z_score = 0
+        else:
+            z_score = (spread-mean)/standard_deviation
         logger.info(f"Z-Score: {z_score:.4f}")
 
         if z_score > upper_threshold:

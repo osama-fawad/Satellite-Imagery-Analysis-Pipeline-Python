@@ -60,7 +60,7 @@ def spread_analysis():
         mean, standard_deviation = calculate_statistics(spread_history)
 
         """Generate trading signals"""
-        signal = generate_signal(spread, mean, standard_deviation)
+        signal = generate_signal(spread, float(mean), float(standard_deviation))
 
         return jsonify({
             "spread": spread,
