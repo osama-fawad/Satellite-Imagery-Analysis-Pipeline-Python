@@ -1,5 +1,0 @@
-flask
-numpy
-pandas
-psycopg2
-scipy
