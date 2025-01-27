@@ -33,9 +33,9 @@ def run(bbox_coordinates):
     # - instance_id: ID associated with SentinelHub instance configuration -> after creating a new configuration
     # - sh_client_id and sh_client_secret: These are generated when we create OAuth credentials on SentinelHub.
     config = SHConfig()
-    config.instance_id = 'e25b9edb-7b8f-44e9-bc53-d9cfe621f40c'  # instance_id
-    config.sh_client_id = 'b36f74bf-5f50-4a51-9b53-9d8bb399e9ad'   # client_id
-    config.sh_client_secret = '91U24rZlTxiCjG7feULspjO64ajAfIf5'  # client_secret
+    config.instance_id = ''  # instance_id
+    config.sh_client_id = ''   # client_id
+    config.sh_client_secret = ''  # client_secret
 
     # ----------------------------
     # Evalscript: Specify which bands we want to retrieve
